@@ -32,8 +32,8 @@ spec:
         {{- end }}
       containers:
         - name: php
-          imagePullPolicy: Always
-          image: shoppinpal/php-fpm:8.0-alpine
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
           livenessProbe:
             tcpSocket:
               port: 9000

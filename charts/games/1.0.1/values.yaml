@@ -1,3 +1,7 @@
+image:
+  pullPolicy: Always
+  repository: shoppinpal/php-fpm
+  tag: 8.0-alpine
 baseDomain: ""
 docrootSubpath: /www
 updateStrategy: RollingUpdate
