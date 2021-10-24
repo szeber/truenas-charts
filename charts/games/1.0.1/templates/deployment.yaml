@@ -19,7 +19,7 @@ spec:
             name: nginx-config
         - name: data
           hostPath:
-            path: {{ .Values.dataVolume.hostPath }}
+            path: {{ .Values.dataVolume }}
         {{- if .Values.authentication.enabled }}
         - name: auth
           hostPath:
