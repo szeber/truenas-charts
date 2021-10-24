@@ -10,7 +10,7 @@ data:
         {{ end }}
         listen 80 default_server;
 
-        root /var/www/html;
+        root /usr/share/nginx/html;
 
         {{ if .Values.certificate }}
         ssl_certificate /etc/nginx/ssl/tls.crt;
