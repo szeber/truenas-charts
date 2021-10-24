@@ -61,9 +61,9 @@ questions:
   label: "Subpath for the docroot relative to the data volume root. Must start with '/'"
   group: "Nginx Configuration"
   schema:
-    - type: string
-      required: false
-      default: "/www"
+    type: string
+    required: false
+    default: "/www"
 
 - variable: certificate
   description: "TLS Certificate"
