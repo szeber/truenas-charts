@@ -2,7 +2,8 @@ baseDomain: ""
 docrootSubpath: /www
 updateStrategy: RollingUpdate
 certificate: ""
-dataVolume: null
+dataVolume:
+  hostPath: ""
 
 authentication:
   enabled: true
