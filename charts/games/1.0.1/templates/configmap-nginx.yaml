@@ -4,6 +4,7 @@ metadata:
   name: nginx-config
 data:
   default.conf: |
+    server {
         {{ if .Values.certificate }}
         listen 443 ssl http2 default_server;
         {{ end }}
@@ -17,7 +18,7 @@ data:
 
         ssl_protocols TLSv1.2 TLSv1.3;
         {{ end }}
-
+    }
 
   games.conf: |
     server {
