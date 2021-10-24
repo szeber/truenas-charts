@@ -7,6 +7,10 @@ description: PHP/Static games
 type: application
 home: "https://github.com/szeber/truenas-charts/tree/main/charts/games"
 icon: "https://cdn2.iconfinder.com/data/icons/round-set-vol-2/120/gamepad-512.png"
+dependencies:
+- name: common
+  repository: file://../../../library/common/2105.0.0
+  version: 2105.0.0
 keywords:
 - games
 - entertainment
