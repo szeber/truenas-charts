@@ -25,6 +25,11 @@ spec:
           hostPath:
             path: {{ .Values.authentication.htpasswdVolume }}
         {{- end }}
+        {{- if eq (include "games.certAvailable" .) "true" }}
+        - name: tls
+          secret:
+            secretName: games-tls
+        {{- end }}
       containers:
         - name: php
           imagePullPolicy: Always
@@ -55,7 +60,7 @@ spec:
           ports:
             - containerPort: 80
               name: http
-            {{- if .Values.certificate }}
+            {{- if eq (include "games.certAvailable" .) "true" }}
             - containerPort: 443
               name: https
             {{- end }}
@@ -74,4 +79,8 @@ spec:
             {{- if .Values.authentication.enabled }}
             - mountPath: /etc/nginx/htpasswd
               name: auth
+            {{- end }}
+            {{- if eq (include "games.certAvailable" .) "true" }}
+            - mountPath: /etc/nginx/ssl
+              name: tls
             {{- end }}
