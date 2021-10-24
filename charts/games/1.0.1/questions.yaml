@@ -90,13 +90,13 @@ questions:
     default: true
     show_subquestions_if: true
     subquestions:
-    - variable: authentication.htpasswdVolume
+    - variable: htpasswdVolume
       label: "Path for the directory containing the htpasswd file"
       group: "Nginx Configuration"
       schema:
         type: hostpath
         required: true
-    - variable: authentication.htpasswdFile
+    - variable: htpasswdFile
       label: "Path to the htpasswd file inside the htpasswd volume"
       group: "Nginx Configuration"
       schema:
