@@ -1,0 +1,13 @@
+baseDomain: ""
+docrootSubpath: /www
+updateStrategy: RollingUpdate
+certificate: ""
+dataVolume: null
+
+authentication:
+  enabled: true
+  htpasswdVolume: null
+  htpasswdFile: null
+
+service:
+  nodePort: 48888

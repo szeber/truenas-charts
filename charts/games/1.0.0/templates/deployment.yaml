@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: games
+spec:
+  strategy:
+    type: {{ .Values.updateStrategy }}
+  selector:
+    matchLabels:
+      app: games
+  template:
+    metadata:
+      labels:
+        app: games
+    spec:
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+        - name: data
+          hostPath:
+            path: {{ .Values.dataVolume }}
+        {{- if .Values.authentication.enabled }}
+        - name: auth
+          hostPath:
+            path: {{ .Values.authentication.htpasswdVolume }}
+        {{- end }}
+      containers:
+        - name: php
+          imagePullPolicy: Always
+          image: shoppinpal/php-fpm:8.0-alpine
+          livenessProbe:
+            tcpSocket:
+              port: 9000
+          resources:
+            requests:
+              cpu: 20m
+              memory: 32Mi
+            limits:
+              cpu: 80m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /var/www/games
+              name: data
+        - name: nginx
+          image: nginx:stable
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 80
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+          ports:
+            - containerPort: 80
+              name: http
+            {{- if .Values.certificate }}
+            - containerPort: 443
+              name: https
+            {{- end }}
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 64Mi
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              name: nginx-config
+            - mountPath: /var/www/games
+              name: data
+            {{- if .Values.authentication.enabled }}
+            - mountPath: /etc/nginx/htpasswd
+              name: auth
+            {{- end }}

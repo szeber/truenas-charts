@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.idea
+.php_cs.cache
+/.vagrant
+/terraform.tfvars
+**/terraform.tfvars
+/*.tfstate.backup
+**/*.tfstate.backup
+/.terraform.*
+**/.terraform
+*account.json
+/vault_auth.json
+/aws_state_credentials
