@@ -78,7 +78,7 @@ questions:
   label: "Storage"
   group: "Storage"
   schema:
-    type: hostpath
+    type: hostPath
     required: true
     label: "Host path for the data volume"
 
