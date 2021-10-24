@@ -29,7 +29,7 @@ data:
         {{ end }}
 
         server_name  {{ .Values.baseDomain }};
-        root /var/www/games/{{  .Values.docrootSubpath }};
+        root /var/www/games{{  .Values.docrootSubpath }};
         index index.php index.html;
 
         {{ if .Values.certificate }}
@@ -67,7 +67,7 @@ data:
         {{ end }}
 
         server_name ~^(.*)\.{{ regexReplaceAll "\\." .Values.baseDomain "\\." }};
-        root /var/www/games/{{  .Values.docrootSubpath }}/$1;
+        root /var/www/games{{  .Values.docrootSubpath }}/games/$1;
 
         {{ if .Values.certificate }}
         ssl_certificate /etc/nginx/ssl/tls.crt;
