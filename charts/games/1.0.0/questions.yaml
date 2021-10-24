@@ -82,7 +82,7 @@ questions:
     required: true
     label: "Host path for the data volume"
 
-- variable: authentication
+- variable: authentication.enabled
   label: "Use authentication"
   group: "Nginx Configuration"
   schema:
@@ -90,13 +90,13 @@ questions:
     default: true
     show_subquestions_if: true
     subquestions:
-    - variable: htpasswdVolume
+    - variable: authentication.htpasswdVolume
       label: "Path for the directory containing the htpasswd file"
       group: "Nginx Configuration"
       schema:
         type: hostpath
         required: true
-    - variable: htpasswdFile
+    - variable: authentication.htpasswdFile
       label: "Path to the htpasswd file inside the htpasswd volume"
       group: "Nginx Configuration"
       schema:
