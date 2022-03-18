@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compression-utils
+spec:
+  strategy:
+    type: {{ .Values.updateStrategy }}
+  selector:
+    matchLabels:
+      app: compression-utils
+  template:
+    metadata:
+      labels:
+        app: compression-utils
+    spec:
+      containers:
+        - name: ubuntu
+          command:
+          - bash
+          - -c
+          - >
+            apt-get update &&
+            DEBIAN_FRONTEND=noninteractive apt-get install
+              -y
+              -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\"
+              p7zip
+              zip
+              unzip
+              unrar
+              mc
+              vim
+            && while true; do sleep 300; done
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
