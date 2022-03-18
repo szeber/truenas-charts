@@ -1,0 +1,4 @@
+image:
+  pullPolicy: Always
+  repository: justinribeiro/chrome-headless
+  tag: stable

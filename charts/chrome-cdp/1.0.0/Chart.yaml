@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: "1.0.0"
+kubeVersion: '>=1.16.0-0'
+version: 1.0.0
+name: games
+description: Chrome developer tools
+type: application
+home: "https://github.com/szeber/truenas-charts/tree/main/charts/chrome-cdp"
+icon: "https://developers.google.com/web/tools/images/chrome-devtools-16x9_720.png"
+dependencies:
+- name: common
+  repository: file://../../../library/common/2105.0.0
+  version: 2105.0.0
+keywords:
+- network
+maintainers:
+- email: zsolt+truenas@szeberenyi.com
+  name: Chrome-CDP
+  url: szeberenyi.com
