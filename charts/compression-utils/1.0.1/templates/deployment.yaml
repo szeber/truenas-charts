@@ -18,17 +18,17 @@ spec:
           command:
           - bash
           - -c
-          - >
-            apt-get update &&
-            DEBIAN_FRONTEND=noninteractive apt-get install
-              -y
-              -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\"
-              p7zip
-              zip
-              unzip
-              unrar
-              mc
-              vim
+          - |
+            apt-get update && \
+            DEBIAN_FRONTEND=noninteractive apt-get install \
+              -y \
+              -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" \
+              p7zip \
+              zip \
+              unzip \
+              unrar \
+              mc \
+              vim \
             && while true; do sleep 300; done
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
